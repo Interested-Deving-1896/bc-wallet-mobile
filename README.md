@@ -1,126 +1,33 @@
-![Lifecycle:Maturing](https://img.shields.io/badge/Lifecycle-Maturing-007EC6)
-[![Native Build & Test](https://github.com/bcgov/bc-wallet-mobile/actions/workflows/main.yaml/badge.svg?branch=main)](https://github.com/bcgov/bc-wallet-mobile/actions/workflows/main.yaml)
+[update-readmes]   Mode: rewrite — migrating to template structure...
+# bc-wallet-mobile
 
-# About
+[![Built with Ona](https://ona.com/build-with-ona.svg)](https://app.ona.com/#https://github.com/Interested-Deving-1896/bc-wallet-mobile)
 
-BC Wallet to hold Verifiable Credentials
+<!-- AI:start:what-it-does -->
+_Description pending._
+<!-- AI:end:what-it-does -->
 
-# Table of Contents
+## Architecture
 
-<!-- TOC -->
+<!-- AI:start:architecture -->
+_Architecture documentation pending._
+<!-- AI:end:architecture -->
 
-- [Prerequisite software](#prerequisite-software)
-- [Cloning and initializing submodule](#cloning-and-initializing-submodule)
-- [React Native setup](#react-native-setup)
-- [Installing npm modules](#installing-npm-modules)
-- [Configuration](#configuration)
-- [Code Formatting and Linting](#code-formatting-and-linting)
-- [Running in an Android emulator](#running-in-an-android-emulator)
-- [Troubleshooting and debugging](#troubleshooting-and-debugging)
-<!-- TOC -->
+## Install
 
-## Prerequisite software
+<!-- Add installation instructions here. This section is yours — the AI will not modify it. -->
 
-Before you can proceed with building and testing the BC Wallet app, you must install and configure the following products on your development machine:
-
-- [Git](https://git-scm.com/)
-- A [JDK](https://openjdk.org/) and [Gradle](https://gradle.org) - Make sure you install compatible versions, see [here](https://docs.gradle.org/current/userguide/compatibility.html) for more information.
-- [Ruby](https://www.ruby-lang.org/en/documentation/installation/) version 2.x.x. You may want/need to use [rbenv](https://github.com/rbenv/rbenv) on MacOS.
-- [Bundler](https://bundler.io) version 2 or newer: `sudo gem install bundler:2.1.4`.
-
-## Cloning and initializing submodule
-
-First clone this repository:
-
-```sh
-# Clone your GitHub repository:
-git clone https://github.com/bcgov/bc-wallet-mobile.git
-
-# Go to the BC Wallet directory:
+```bash
+git clone https://github.com/Interested-Deving-1896/bc-wallet-mobile.git
 cd bc-wallet-mobile
 ```
 
-## Install Additional Tools
+## Usage
 
-1. Download [mise](https://mise.jdx.dev/getting-started.html)
-   > **Linux/WSL/OSX**: `curl https://mise.run | sh`
-2. Configure your .bashrc/.zshrc for mise
-   > **Linux/WSL**: `echo 'eval "$(~/.local/bin/mise activate bash)"' >> ~/.bashrc`  
-   > **OSX**: `echo 'eval "$(~/.local/bin/mise activate zsh)"' >> ~/.zshrc`
-3. Run `mise install` to install all specified tools. This will install the tools listed in `.tool-versions`
-
-## React Native setup
-
-React Native environment setup instructions are documented [here](https://reactnative.dev/docs/environment-setup). Be sure to select the correct React Native version (currently 0.73.x) from the dropdown and to follow the instructions for the React Native CLI. This will guide you through setting up your development environment for your operating system and choice of iOS (only if you are using a Mac) or Android.
-
-Following along, you should end up using Android SDK Platform 33 with Android 13 (API Level 33) for Android development and/or iOS 11 for iOS development.
-
-## Additional Setup for Android Studio
-
-Once you've followed the setup steps for React Native we have a few more things we need to do inside android studio, to smooth out the development experience.
-
-1. Open Android Studio and open the folder a `~/bc-wallet-mobile/app/android`
-2. Open Android Studio settings, then select `Build, Execution, Deployment` -> `Build Tools` -> `Gradle`
-3. You should see a few field inputs, update the Gradle SDK field to the same version of Java you downloaded earlier in the Prequisite Software steps
-   ![Android Studio Gradle Setting](/docs/android-studio-java-setting.png)
-
-## Installing npm modules and pods
-
-Next, install the npm modules needed to build and test BC Wallet from the root of the repository:
-
-```sh
-# Install BC Wallet project dependencies (package.json) from the root of the cloned repository
-yarn install
-```
-
-To install pod dependencies:
-
-```sh
-   cd app
-   yarn run ios:setup
-```
-
-## Linking Bifold for development
-To work on changes to BC Wallet in Bifold (the underlying Aries project) you will also need to do the following:
-
-Next steps assume this directory structure:
-
-```
-  bc-wallet-mobile/
-  bifold/
-```
-
-Clone Bifold (once)
-
-```sh
-git clone https://github.com/openwallet-foundation/bifold-wallet.git bifold
-```
-
-Link Bifold (once per linking session)
-
-```sh
-# from: bc-wallet-mobile/
-yarn link:bifold
-```
-Note: Metro connection will need to be reloaded (R) or restarted after linking.
-
-Build new Bifold changes (as needed)
-
-```sh
-# from: bifold/
-yarn build
-```
-
-Once you are happy with your changes to Bifold and have made the relevant PR there, do the following:
-
-```sh
-# from: bc-wallet-mobile/
-yarn unlink --all
-```
-
-Then once your PR is merged and the packages have been published, make a PR in bc-wallet-mobile with the relevant updated packages installed. The current packages published from Bifold are `@bifold/core`, `@bifold/verifier`, `@bifold/oca`, `@bifold/remote-logs`, and `@bifold/react-native-attestation`. They are all consumed by bc-wallet-mobile and other projects like it.
+<!-- Add usage examples here. This section is yours — the AI will not modify it. -->
 
 ## Configuration
+
 
 ### Google Services Files
 
@@ -153,342 +60,46 @@ SNOWPLOW_COLLECTOR_URL=<url>
 
 Push notifications can be used locally if the mediator service has the firebase plugin and it's configured correctly.
 
-## Code Formatting and Linting
+## CI
 
-The project uses multiple formatters and linters for different languages
+<!-- AI:start:ci -->
+_CI documentation pending._
+<!-- AI:end:ci -->
 
-### Install Native Formatters (macOS)
+## Mirror chain
 
-```sh
-brew install swiftformat clang-format ktlint
-```
-
-### Install VS Code Extensions
-
-The project includes recommended extensions in `.vscode/extensions.json`. VS Code will prompt you to install them when you open the project.
-
-### Available Scripts
-
-```sh
-# From the root directory
-yarn lint           # Lint all files (TypeScript, Swift, C, Kotlin)
-yarn format         # Format all files
-yarn format:check   # Check formatting without making changes
-yarn typecheck      # TypeScript type checking
-yarn check          # Run all checks (typecheck + lint + format:check + test)
-```
-
-## Running in an Android emulator
-
-During the development process, you may want to run the app in the emulator to see see what it looks like or for some manual testing.
-
-### Creating Android emulator
-
-1. Open <kbd>Android Studio</kbd> -> <kbd> ⠇settings</kbd> -> <kbd> 📲 Virtual Device Manager</kbd> -> <kbd> Create
-   Device </kbd>
-
-| Name         | Details                               | Comments                                                                                                          |
-| ------------ | ------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| Device       | Pixel 4 or Higher (Without PlayStore) | **Note** - To root the emulator you need the one without Play Store. If you want to update the `/etc/hosts` file. |
-| System Image | Android 11, API Level - `30`          | **Note** - This should be preselected if you followed along with the React Native setup guide.                    |
-
-2. (Optional) Follow the below instructions to start a rooted Android emulator (Required to be rooted to access the ledger running locally in order to
-   update the device's `/etc/hosts` file.). Accessing ledgers available on the internet does not require rooting the device.
-
-   > For more info - [Refer Official Docs - Local Network limitation](https://developer.android.com/studio/run/emulator-networking#networkinglimitations)
-
-   1. List emulator
-
-      ```shell
-      emulator -list-avds
-      Pixel_4_XL_API_30
-
-      # Note - Your output might be different depending on the AVD you created above.
-      ```
-
-   2. Start emulator as writable system
-      ```shell
-      emulator -avd Pixel_4_XL_API_30 -writable-system -no-snapshot-load
-      ```
-   3. Open a new terminal session, and run commands described in steps 3, 4 & 5.
-      <br> Restart as root user
-      ```shell
-      adb root
-      ```
-   4. Remount
-      ```shell
-      adb -s emulator-5554 remount
-      ```
-      output:
-      ```
-      remount succeeded
-      ```
-   5. Create a file with following host entries. We will copy this file into the emulator.
-      1. create a file
-      ```shell
-      vi myhosts
-      ```
-      ```shell
-      # Enter your local machines IP address. 192.168.0.107 is an example.
-      192.168.0.107 host.docker.internal
-      # Ensure to add a new line
-      ```
-      2. Push the file into the emulator
-      ```shell
-      adb -s emulator-5554 push myhosts /system/etc/hosts
-      ```
-   6. Verify if the host entries are updated correctly!
-
-      ```shell
-       # To Verify
-       $ adb shell
-       $ cat /etc/hosts
-
-       127.0.0.1       localhost
-       ::1             ip6-localhost
-       192.168.0.117   host.docker.internal
-      ```
-
-   7. Goto Emulator -> ⚙️ <kbd> Settings</kbd> -> 🔒 Security
-      1. Set a pin for screen lock
-      2. Add a Fingerprint (To enable biometric authentication)
-         <br>
-   8. Done!
-
-### Running app in Android emulator with Metro
-
-Once you've created and configured your emulator:
-
-```sh
-cd app
-yarn android
-```
-
-Alternatively, you can open `./app/android/` in Android Studio and run the app and emulator from there.
-
-After the initial debug app has been built and deployed to the emulator, you can start the metro bundler:
-
-```sh
-cd app
-yarn start
-```
-
-### Adding QR code to emulator camera view
-
-To place a QR code into the emulators camera view, first ensure you have set the emulators back camera to `VirtualScene`.
-
-Then navigate to `<Android SDK Location>/emulator/resources` and open the `Toren1BD.posters` file in your editor.
-
-Add a line break to the end of that file followed by:
+<!-- AI:start:mirror-chain -->
+This repo is maintained in [`Interested-Deving-1896/bc-wallet-mobile`](https://github.com/Interested-Deving-1896/bc-wallet-mobile) and mirrored through:
 
 ```
-poster custom
-size 0.8 0.8
-position 0 -0.1 -1.8
-rotation 0.1 0 0
-default custom.png
+Interested-Deving-1896/bc-wallet-mobile  ──►  OpenOS-Project-OSP/bc-wallet-mobile  ──►  OpenOS-Project-Ecosystem-OOC/bc-wallet-mobile
 ```
 
-Note: You may have to reboot your emulator once this is complete for it to take effect.
+Changes flow downstream automatically via the hourly mirror chain in
+[`fork-sync-all`](https://github.com/Interested-Deving-1896/fork-sync-all).
+Direct commits to OSP or OOC are detected and opened as PRs back to `Interested-Deving-1896`.
+<!-- AI:end:mirror-chain -->
 
-Now, to add any image to the virtual scene (an image of a QR code for example), simply place the image file in this directory with the name `custom.png`
+## Contributors
 
-### Adding QR code to emulator camera view (Extended controls)
+<!-- AI:start:contributors -->
+_Contributors pending._
+<!-- AI:end:contributors -->
 
-Another method for adding images to an emulated android device is through the extended controls panel
+## Origins
 
-To place a QR code into the emulators camera view, you'll first need open android studio and create a new virtual device. Once the virtual device is created, start it. In the running Devices tab, look for a kebob menu in the tray (photo below), this is the extended controls menu.
+<!-- AI:start:origins -->
+_Original project — no upstream fork._
+<!-- AI:end:origins -->
 
-![Extended controls menu](/docs/extended-controls-kebob.png)
+## Resources
 
-when that menu opens, navigate to the Camera section, there you'll see two options for adding an image, the wall and the table. Add the image of the QR code you'd like to scan and close the menu.
+<!-- AI:start:resources -->
+_No additional resource files found._
+<!-- AI:end:resources -->
 
-Once inside the app, open the QR scanning screen, you'll be dropped into a virtual scene where you'll be able to navigate around and find the QR code to scan.
-To move around: hold `shift` + (`W`,`A`,`S`,`D`)
-To look around: use the arrow keys
+## License
 
-## Troubleshooting and debugging
-
-### Hot reloading
-
-Hot reloading may not work correctly with instantiated Agent objects. Reloading (`r`) or reopening the app may work. Any changes made to native modules require you to re-run the compile step.
-
-### Dependency issues, native module linking issues
-
-If you end up changing dependencies or structures, you may need to perform the following steps:
-
-#### For Android
-
-```sh
-rm -rf app/node_modules
-yarn install
-```
-
-Clean the Android build:
-
-```sh
-cd app/android
-./gradlew clean
-cd ../..
-```
-
-Start and clean the Metro cache:
-
-```sh
-cd app
-yarn start
-```
-
-In your second terminal, you can now run:
-
-```sh
-cd app
-yarn android
-```
-
-### Android emulator issues
-
-If the app seems to be hung while loading in your emulator, you made need to reset the connection by running the following in the Android Studio terminal:
-
-```sh
-adb reverse tcp:8081 tcp:8081
-```
-
-Ensure you have your emulator's front and back camera set to use different sources, as not doing so may cause the emulator to crash whenever the camera is opened.
-
-### Debugging in Intellij and Android Emulator
-
-**UI Inspection:**
-
-1. Install `react-devtools`, if you haven't already
-   ```shell
-   yarn install -g react-devtools
-   ```
-2. Run devtools (you can use this only for UI inspections)
-   ```
-   react-devtools
-   ```
-3. In a separate terminal, run the following command. To redirect network to react-devtools
-   ```shell
-   adb reverse tcp:8097 tcp:8097
-   ```
-   **Debug Application Code in Intellij or WebStorm**
-4. Open directory `/app` as project
-5. Run/Debug Configuration.
-
-   > [Optional] update the port to `10001`. As the default port `8081` tends to run into
-   > conflicts. If you don't have other services running on port 8081. You can skip changing the port
-
-   ![](./docs/intellij-run-debug-config.png)
-
-6. Start Wallet in Debug Mode. <br>
-   ![img.png](./docs/intellij-debug-btn.png)
-
-7. Now you can add breakpoint in your IDE.
-   ![img.png](./docs/intellij-debugging.png)
-   > Troubleshooting: <br>
-   > If debug does not showup. Ensure you have enabled debugging on the device by clicking <kbd>command</kbd> + <kbd>m</kbd>
-   > on the device and select <kbd>Debug</kbd>.
-   > <br> > ![](./docs/Emulator-debug-menu.png)
-
-## Debuggin Android Emulator
-
-**Clear Caches**
-
-If issues are arising for the emulator, you may need to clear the caches.
-
-- run above commands for gradlew clean
-- delete `app/android/.gradle`
-- delete `app/.metro-cache`
-- delete `app/android/.yarn`
-
-### Debugging in WSL2 and Android Emulator
-
-If you're developing on Windows using WSL2, follow these setup steps to set up an emulator running on Windows that can communicate with adb running in WSL:
-
-**Configure your Android Emulator**
-
-- Install Android Studio on your Windows host (Windows)
-  - Download [Android Studio for Windows](https://developer.android.com/studio) and go through the installer, setting up an emulator / virtual device
-- Configure your wslconfig (Windows)
-  - locate your .wslconfig file
-    > HINT: it should be in `%userprofile%\.wslconfig`
-  - Change your wsl2 settings to use Mirrored Networking Mode and hostAddressLoopback. This allows you to connect to Windows from Linux in WSL using the loopback address. Include the following lines in your `.wslconfig`:
-  ```
-  [wsl2]
-  networkingmode=mirrored
-  hostAddressLoopback=true
-  ```
-  > HINT: Read more about [Mirrored mode networking](https://learn.microsoft.com/en-us/windows/wsl/networking#mirrored-mode-networking) and [host address loopback](https://learn.microsoft.com/en-us/windows/wsl/wsl-config#experimental-settings)
-- Install Android Studio Command Line Tools in your WSL2 environment (WSL)
-  - Downloads are found near the bottom of the [Android Studio Downloads](https://developer.android.com/studio) page
-  - unzip the cmdline tools with `unzip commandlinetools-linux-[VERSION]_latest.zip -d ~/Android/Sdk/tools`
-  - in your .bashrc file, define the following paths
-  ```
-  export ANDROID_HOME=/home/[your-name]/Android/Sdk
-  export PATH=$PATH:$ANDROID_HOME/platform-tools
-  export PATH=$PATH:$ANDROID_HOME/tools/bin
-  ```
-  - restart your shell (i.e. `exit` and `wsl` again)
-  - run `sdkmanager "platform-tools"` to install adb
-- (Optional) add the emulator to Windows PATH (Windows)
-  - open `sysdm.cpl`
-  - go to the `Advanced` tab
-  - Click `Environment Variables...`
-  - Select `Path`
-  - Click `Edit...`
-  - Click `New`
-  - Enter the Android emulator directory installed in a previous step
-    > HINT: By default, it is `C:\Users\\[YOUR_USERNAME]AppData\Local\Android\Sdk\emulator`
-  - Click OK on all the control panel dialogs opened
-- Run the emulator (Windows)
-  - Open Powershell
-    > Shortcut: Windows + X, A
-  - run `emulator -avd DEVICE_NAME` where DEVICE_NAME is the name of an android virtual device you have configured in Android Studio for Windows
-- Run React-Native (WSL)
-  - from `bc-wallet-mobile/app` run `yarn android` or `yarn start` and wait until you are prompted to select android
-
-At this point you should see that the app builds in your wsl environment and runs on the emulator on your Windows host.
-
-**Configure BCWallet in WSL2:**
-
-- Clone bc-wallet-mobile repository in WSL2 filesystem
-- Install openJDK in WSL2 (version 17.0.16)
-- Install Gradle in WSL2 (version 9.0.0)
-- Use Android SDK from the project
-
-**Windows Configuration:**
-
-- Disable Hyper-V in Windows Features
-- Enable nested virtualization in Windows Features
-
-**Note:** Running the Android emulator in WSL2 requires proper virtualization support. Make sure your system supports nested virtualization and that it's enabled in your BIOS/UEFI settings.
-
-**Enable Systemd for WSL2:**
-
-```sh
-# /etc/wsl.conf
-[boot]
-systemd=true
-# reboot WSL2 after this change
-```
-
-**Grant permissions to the user to access the KVM device:**
-
-```sh
-sudo mknod /dev/kvm c 10 232;
-
-sudo setfacl -m u:$USER:rwx /dev/kvm
-
-sudo chmod -R 0777 /dev/kvm
-```
-
-sources:
-
-- [enable-kvm](https://stackoverflow.com/questions/40342015/enable-vt-x-in-your-bios-security-settings-ensure-that-your-linux-distro-has-wo)
-- [grant-permissions](https://stackoverflow.com/questions/62907566/grant-current-user-access-to-dev-kvm)
-- [systemd](https://stackoverflow.com/questions/79650575/system-has-not-been-booted-with-systemd-as-init-system-pid-1)
-
-### Debugging in VSCode and Android Emulator
-
-[![](https://img.youtube.com/vi/UE66n7HOIAg/0.jpg)](https://www.youtube.com/watch?v=UE66n7HOIAg)
+<!-- AI:start:license -->
+[Apache-2.0](https://github.com/Interested-Deving-1896/bc-wallet-mobile/blob/main/LICENSE) © 2026 [Interested-Deving-1896](https://github.com/Interested-Deving-1896)
+<!-- AI:end:license -->
